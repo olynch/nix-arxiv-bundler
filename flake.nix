@@ -19,14 +19,11 @@
             pkgs.callPackage ./nix/arxiv-build.nix {
               inherit autotex texdist; arxiv-bundle = (arxiv-bundle src);
             };
-          default = arxiv-build ./test;
         };
 
-        devShell = pkgs.mkShell {
-          buildInputs = [
-            texdist
-            packages.autotex
-          ];
+        templates.default = {
+          path = ./template;
+          description = "A basic setup for an arxiv-ready tex project";
         };
       }
     );
