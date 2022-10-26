@@ -21,7 +21,7 @@
             };
         };
 
-        templates.default = {
+        defaultTemplate = {
           path = ./template;
           description = "A basic setup for an arxiv-ready tex project";
         };
