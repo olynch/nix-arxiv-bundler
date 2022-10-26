@@ -43,6 +43,6 @@ in stdenv.mkDerivation {
   installPhase = ''
     mkdir $out
     cp -R * $out
-    cp $src $out/
+    cp $src $out/arxiv.tar.gz
   '';
 }
