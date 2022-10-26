@@ -16,6 +16,7 @@ let
     $t->set_dvips_resolution(600);
     $t->{branch} = '3';
     $t->{tex_env_path} = '${texdist}/bin';
+    $t->set_stampref(['nix-arxiv-bundler created file', 'https://github.com/olynch/nix-arxiv-bundler'])
     if ($t->process()) {
       exit 0;
     } else {
