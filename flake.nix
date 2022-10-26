@@ -21,10 +21,11 @@
             };
         };
 
-        templates.default = {
-          path = ./template;
-          description = "A basic setup for an arxiv-ready tex project";
-        };
       }
-    );
+    ) // {
+      templates.default = {
+        path = ./template;
+        description = "A basic setup for an arxiv-ready tex project";
+      };
+    };
 }
