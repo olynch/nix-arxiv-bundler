@@ -1,0 +1,205 @@
+%%% Owen's Ye Olde Macro Definitions %%%
+% The philosophy of this macro package is that LaTeX code has a disadvantage over handwriting
+% because handwriting is more flexible. However, it also has an advantage in that it can be
+% self-documenting. Therefore, we provide macros such as \integer, or \real, to use instead
+% of \mathbb{Z} or \mathbb{R}. When two mathematical concepts use the same notation, this allows
+% us to disambiguate it in the LaTeX.
+
+% This helps us in writing papers because the source code becomes much more legible. Rather
+% than a description of what something should look like on the page, it almost becomes like
+% a pronunciation guide to what could be a dense tangle of notation.
+
+% Furthermore, correct use of LaTeX is somewhat difficult. There are spacing subtleties that
+% LaTeX can handle for you if you tell it which things are unary/binary operators, and use
+% \colon instead of : when defining functions. These macros help with this; whenever possible
+% a macro is declared using one of the \DeclareXXX family, which automatically gives it the
+% correct spacing.
+
+% Pared down for thermostatics paper
+
+\ProvidesPackage{macros}
+
+%%% PACKAGES %%%
+
+% Typography
+\usepackage{enumerate}
+
+% Standard AMS Packages
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+% Moar Symols
+\usepackage{stmaryrd}
+
+% Localization
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix,arrows,decorations.markings,shapes,automata,backgrounds,petri,positioning}
+
+\usepackage{subcaption}
+
+% Fine Tuning
+\usepackage{microtype}
+
+% Physics and Calculus and Other Niceties
+\usepackage{physics}
+
+% Bibliography
+\usepackage[backend=biber, style=numeric, maxnames = 10]{biblatex}
+
+% Automatic Naming of References
+
+\definecolor{myurlcolor}{rgb}{0.5,0,0}
+\definecolor{mycitecolor}{rgb}{0,0,0.8}
+\definecolor{myrefcolor}{rgb}{0,0,0.8}
+\usepackage[bookmarks=false]{hyperref}
+\hypersetup{colorlinks,
+linkcolor=myrefcolor,
+citecolor=mycitecolor,
+urlcolor=myurlcolor}
+%\renewcommand*{\backref}[1]{(Cited on page #1.)}
+\usepackage[capitalize]{cleveref}
+
+%%% TYPOGRAPHICAL SHORTHANDS %%%
+
+\newcommand*{\mc}[1]{\mathcal{#1}}
+
+%%% NOTATIONS %%%
+
+% Symbols
+\newcommand*{\sq}{\square}
+
+% Arrows
+\newcommand*{\onto}{\twoheadrightarrow}
+\newcommand*{\inc}{\hookrightarrow}
+\newcommand*{\into}{\rightarrowtail}
+\renewcommand*{\to}{\rightarrow}
+\newcommand*{\ot}[1][]{\xleftarrow{#1}}
+\newcommand*{\oto}{\leftrightarrow}
+\newcommand*{\tto}{\Rightarrow}
+
+% Functions
+\newcommand*{\maps}{\colon}
+\newcommand*{\oftype}{\colon}
+
+% Duals
+\renewcommand*{\op}{^{\mathord{\mathrm{op}}}}
+
+% Set Theory
+\newcommand*{\set}[1]{\{#1\}}
+\newcommand*{\st}{\mid}
+\newcommand*{\sm}{\setminus}
+
+% Relations
+
+\newcommand*{\ins}{\subseteq}
+\newcommand*{\sni}{\supseteq}
+
+% Special Characters
+
+\newcommand*{\inj}{\iota}
+
+%%% NOUNS %%%
+
+% Special Sets
+\newcommand*{\numberset}[1]{\mathbb{#1}}
+\newcommand*{\complex}{\numberset{C}}
+\newcommand*{\rational}{\numberset{Q}}
+\renewcommand*{\natural}{\numberset{N}}
+\newcommand*{\integer}{\numberset{Z}}
+\newcommand*{\ffield}{\numberset{F}}
+\renewcommand*{\real}{\numberset{R}}
+
+% Categories
+\newcommand*{\category}[1]{\mathsf{#1}}
+\newcommand*{\cat}[1]{\category{#1}}
+\newcommand*{\setC}{\category{Set}}
+\newcommand*{\finSetC}{\category{FinSet}}
+\newcommand*{\sSetC}{\category{sSet}}
+\newcommand*{\topC}{\category{Top}}
+\newcommand*{\relC}{\category{Rel}}
+\newcommand*{\finRelC}{\category{FinRel}}
+\newcommand*{\convC}{\category{Conv}}
+\newcommand*{\thermC}{\category{Therm}}
+\newcommand*{\grpC}{\category{Grp}}
+\newcommand*{\abC}{\category{Ab}}
+\newcommand*{\catC}{\category{Cat}}
+\newcommand*{\oprdC}{\category{Oprd}}
+\newcommand*{\SMC}{\category{SMC}}
+\newcommand*{\modC}[1]{\category{Mod}_{#1}}
+\newcommand*{\vecC}[1]{\category{Vec}_{#1}}
+\newcommand*{\linRelC}[1]{\category{LinRel}_{#1}}
+\newcommand*{\decGraphC}[1]{\category{Grph}_{#1}}
+\newcommand*{\graphC}[1]{\category{Grph}}
+\newcommand*{\measC}{\category{Meas}}
+\newcommand*{\Open}{\category{\mathbb Open}}
+\newcommand*{\petriC}{\category{Petri}}
+\newcommand*{\cSetC}[1]{#1\text{-}\setC}
+\newcommand*{\attrSetC}[1][{}]{\mathrm{Attr}_{#1}\text{-}\setC}
+\newcommand*{\acsetC}{\category{Acset}}
+\newcommand*{\terminalC}{\category{1}}
+\newcommand*{\intervalC}{\category{2}}
+\newcommand*{\structCspC}[2]{_{#2}\category{\mathbb{C}sp}(#1)}
+
+% Functors
+
+\newcommand*{\Ent}{\mathrm{Ent}}
+
+%%% OPERATORS %%%
+
+% Category Theory
+\DeclareMathOperator{\cospan}{Csp}
+\newcommand*{\strucCospan}[1]{{_{#1}\cospan}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\el}{el}
+\DeclareMathOperator{\Lan}{Lan}
+\DeclareMathOperator{\Ran}{Ran}
+\newcommand*{\tensor}{\otimes}
+\DeclareMathOperator{\evalat}{ev}
+\newcommand*{\cmp}{\mathbin{\fatsemi}}
+\newcommand*{\limas}{\lim}
+%\renewcommand*{\lim}{\varprojlim}
+\newcommand*{\colim}{\varinjlim}
+
+%%% defined terms %%%
+
+\newcommand{\define}[1]{{\bf \boldmath{#1}}}
+
+%%% THEOREMS %%%
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{construction}[theorem]{Construction}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{exerciseinner}[theorem]{Exercise}
+\newenvironment{exercise}[1]{%
+  \renewcommand\theexerciseinner{#1}%
+  \exerciseinner
+}{\endexerciseinner}
+
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem{example}[theorem]{Example}
+% \newtheorem{lexample}[example]{Example}
