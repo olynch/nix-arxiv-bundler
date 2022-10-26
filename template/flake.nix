@@ -17,6 +17,12 @@
           arxiv-build = nix-arxiv-bundler.packages.${system}.arxiv-build ./.;
           default = arxiv-build;
         };
+
+        devShell = with pkgs; mkShell {
+          buildInputs = [
+            nix-arxiv-bundler.packages.${system}.texdist
+          ];
+        };
       }
     );
 }

@@ -9,9 +9,9 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        texdist = pkgs.texlive.combined.scheme-full;
       in rec {
         packages = rec {
+          texdist = pkgs.texlive.combined.scheme-full;
           autotex = pkgs.callPackage ./nix/autotex.nix { inherit texdist; };
           arxiv-bundle = src:
             pkgs.callPackage ./nix/arxiv-bundle.nix { inherit texdist src; };
