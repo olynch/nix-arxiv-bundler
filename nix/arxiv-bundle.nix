@@ -10,7 +10,7 @@ stdenv.mkDerivation {
   # Create the bbl
   buildPhase = ''
     latexmk -pdf
-    rm *.aux *.bcf *.blg *.fdb_latexmk *.fls *.log *.out *.pdf *.run.xml *.toc
+    rm *.aux *.bcf *.blg *.bib *.fdb_latexmk *.fls *.log *.out *.pdf *.run.xml *.toc
   '';
 
   installPhase = ''
