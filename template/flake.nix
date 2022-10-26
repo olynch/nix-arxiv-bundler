@@ -13,8 +13,8 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in rec {
         packages = rec {
-          arxiv-bundle = nix-arxiv-bundler.packages.${system}.arxiv-bundle ./.;
-          arxiv-build = nix-arxiv-bundler.packages.${system}.arxiv-build ./.;
+          arxiv-bundle = nix-arxiv-bundler.packages.${system}.arxiv-bundle ./src;
+          arxiv-build = nix-arxiv-bundler.packages.${system}.arxiv-build ./src;
           default = arxiv-build;
         };
 
