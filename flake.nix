@@ -13,14 +13,17 @@
         packages = rec {
           texdist = pkgs.texlive.combined.scheme-full;
           autotex = pkgs.callPackage ./nix/autotex.nix { inherit texdist; };
-          arxiv-bundle = src:
-            pkgs.callPackage ./nix/arxiv-bundle.nix { inherit texdist src; };
-          arxiv-build = src:
+          arxiv-bundle = { src, mainfile }:
+            pkgs.callPackage ./nix/arxiv-bundle.nix { inherit texdist src mainfile; };
+          arxiv-build = bundle:
             pkgs.callPackage ./nix/arxiv-build.nix {
-              inherit autotex texdist; arxiv-bundle = (arxiv-bundle src);
+              inherit autotex texdist; arxiv-bundle = bundle;
             };
         };
 
+        devShell = pkgs.mkShell {
+          buildInputs = [ packages.autotex packages.texdist ];
+        };
       }
     ) // {
       templates.default = {

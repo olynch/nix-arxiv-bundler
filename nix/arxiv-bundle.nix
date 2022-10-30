@@ -1,4 +1,4 @@
-{ stdenv, src, texdist }:
+{ stdenv, src, texdist, mainfile }:
 
 stdenv.mkDerivation {
   name = "arxiv-bundle.tar.gz";
@@ -9,7 +9,7 @@ stdenv.mkDerivation {
 
   # Create the bbl
   buildPhase = ''
-    latexmk -pdf
+    latexmk -pdf ${mainfile}
     rm *.aux *.bcf *.blg *.bib *.fdb_latexmk *.fls *.log *.out *.pdf *.run.xml *.toc
   '';
 
